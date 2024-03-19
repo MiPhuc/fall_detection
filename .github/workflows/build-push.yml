@@ -20,3 +20,6 @@ jobs:
 
     - name: Push the docker image
       run: docker push '${{secrets.DOCKER_LOGIN}}'/fastapi-docker-workflow:'${{github.sha}}'
+
+    - name: Run the docker image
+      run: docker run -p 80:80 '${{secrets.DOCKER_LOGIN}}'/fastapi-docker-workflow:'${{github.sha}}'
