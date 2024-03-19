@@ -11,8 +11,12 @@ class request_obj(BaseModel):
 class response_obj(BaseModel):
     predicted : bool
 
+@app.get('/')
+async def read_root():
+    return {"Hello": "World"}
+
 @app.post('/predict')
-def predict(request :request_obj):
+async def predict(request :request_obj):
     if len(request.sensor1):
         pred = response_obj(predicted = True)
     else:
